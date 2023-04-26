@@ -81,3 +81,22 @@ function fibRecursion(n, seq = [1, 1]) {
     return fibRecursion(n, seq[seq.length-2]+seq[seq.length-1])
   }
 }
+
+//Given a multi-dimensional integer array, return the total number of integers stored inside this array
+
+//let seven = totalIntegers([[[5], 3], 0, 2, ['foo'], [], [4, [5, 6]]]); // 7
+
+//let seven = totalIntegers([[[5], 3], 0, 2, ['foo'], [], [4, [5, 6]]]); // 7
+//console.log("seven", seven)
+
+function totalIntegers(arr, total = 0) {
+  for(let i = 0; i < arr.length; i++) {
+    if(Array.isArray(arr[i])) {
+      total = totalIntegers(arr[i], total);
+    }
+    else {
+      typeof arr[i] === "number" ? total += 1 : ""   
+    }
+  }
+  return total;
+}
