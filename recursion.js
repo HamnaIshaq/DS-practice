@@ -100,3 +100,45 @@ function totalIntegers(arr, total = 0) {
   }
   return total;
 }
+
+
+/*
+Binary Search
+this only works for a sorted array
+
+if we want to find the number 7 in the array
+arr = [1,2,3,4,5,6,7,8,9,10]
+
+find n=7
+
+then we will do the following
+
+loop (recursive process)
+  find the mid element of the array
+  is the mid element < n
+  if yes --> this means that n is not present in the LEFT side of the array (arr    is sorted)
+    make a new array with elements that are only present with the mid element and     RIGHT side of array
+  if no --> this means that n is not present in the RIGHT side of the array
+    make a new array with elements that are only present with the mid element and     LEFT side of array
+until base case 
+  array is only 1 element then this element is the 1 we wanted to find
+*/
+arr = [1,2,3,4,5,  6,7,8,9,10]
+//n=7
+function binarySearch(arr, n, start = 0, end = arr.length-1) { 
+  const midIndex = Math.ceil((start + end)/2);
+  if(arr[midIndex] === n) {
+    return midIndex
+  } else {
+    if(arr[midIndex] < n) {
+      return binarySearch(arr, n, midIndex, end)
+    } else {
+      return binarySearch(arr, n, start, midIndex)
+    }
+  }
+}
+
+//console.log(binarySearch(arr, 7))
+
+
+
